@@ -36,7 +36,7 @@ qx.Class.define("qooxdoo_svg.SvgView", {
             return svgGrid;
 		},
 		__createSvg:function(){
-			var container = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
+			var container = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 			var svgWidget = new svg.embed.Svg().set({
 				alignY:"middle",
 				alignX:"center"
@@ -59,8 +59,30 @@ qx.Class.define("qooxdoo_svg.SvgView", {
             floorgroup.add(rect1);
             
             svgRoot.add(floorgroup);
+      
+      // this button centers the rectangle (blue one)
+      var centerButton = new qx.ui.form.Button("Center").set({
+        allowGrowX: false
+      });
+      console.log(svgRoot.$$hash);
+      centerButton.addListener("execute", function(e) {
+        /*var viewBox = svgRoot.getAttribute('viewBox');
+        viewBox=viewBox.split(' ');
+        var cx=parseFloat(viewBox[0])+(parseFloat(viewBox[2])/2);
+        var cy=parseFloat(viewBox[1])+(parseFloat(viewBox[3])/2);                            
+        var x=cx - bbox.x - (bbox.width/2);*/
 
-			container.add(svgWidget,{width:"100%",height:"100%"});
+        var bbox = svgRoot.getDomElement().getBoundingClientRect();
+        var w = (bbox.width-100)/2;
+        var h = (bbox.height-100)/2;
+ 
+        console.info("SVG root dimensions", svgRoot.$$hash,  bbox);
+        // move to the center of the screen 
+        floorgroup.setTransform("translate(" + w +"," + h +")");        
+      }, this);
+     
+      container.add(centerButton);
+			container.add(svgWidget, {flex: 1});
 			return container;
 		}
 	}

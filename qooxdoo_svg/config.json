@@ -41,7 +41,7 @@
   "let" :
   {
     "APPLICATION"  : "qooxdoo_svg",
-    "QOOXDOO_PATH" : "../qooxdoo-master",
+    "QOOXDOO_PATH" : "../qooxdoo",
     "QXTHEME"      : "qooxdoo_svg.theme.Theme",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*"],
     "LOCALES"      : [ "en" ],
@@ -58,18 +58,16 @@
     // project; make sure to adapt the path to the Manifest.json; if you are
     // using a contrib: library, it will be downloaded into the path specified
     // by the 'cache/downloads' config key
-    /*
+    
     "libraries" :
     {
       "library" :
       [
         {
-          "manifest" : "contrib://SkeletonApplication/trunk/Manifest.json"
+          "manifest" : "../svg/Manifest.json"
         }
       ]
     }
-    */
-
     // If you want to tweak a job setting, see the following sample where
     // the "format" feature of the "build-script" job is overridden.
     // To see a list of available jobs, invoke 'generate.py x'.

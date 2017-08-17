@@ -21,6 +21,7 @@
  * @tag databinding
  * @tag list controller
  * @tag form controller
+ * @asset(qooxdoo_svg/*)
  */
 qx.Class.define("qooxdoo_svg.Application", {
     extend: qx.application.Standalone,
@@ -28,6 +29,9 @@ qx.Class.define("qooxdoo_svg.Application", {
     members: {
         main: function() {
             this.base(arguments);
+            
+          var uri = qx.util.ResourceManager.getInstance().toUri("qooxdoo_svg/css/qooxdoo_svg.css");
+          qx.bom.Stylesheet.includeFile(uri);
 
             this.viewer = new qooxdoo_svg.SvgView();
            
